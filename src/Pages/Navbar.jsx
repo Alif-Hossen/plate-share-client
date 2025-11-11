@@ -10,8 +10,9 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
   const handleLogout = () => {
-    logOut().then(() => alert("✅ Logged Out!"))
-            .catch(error => console.error(error));
+    logOut()
+      .then(() => alert("✅ Logged Out!"))
+      .catch(error => console.error(error));
   };
 
   const getLinkClass = ({ isActive }) => 
@@ -21,6 +22,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar bg-base-100 shadow-sm max-w-[1480px] mx-auto">
+      
       <div className="navbar-start">
         <div className="flex items-center gap-2">
           <img className='h-[50px] w-[50px] rounded-full' src={foodShareImg} alt="Plate Share Logo" />
@@ -36,6 +38,26 @@ const Navbar = () => {
         </ul>
       </div>
 
+      <div className="navbar-center lg:hidden">
+        <div className="dropdown">
+          <label tabIndex={0} className="btn btn-ghost btn-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </label>
+          <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+            <li><NavLink to="/" className={getLinkClass}>Home</NavLink></li>
+            <li><NavLink to="/availableFoods" className={getLinkClass}>Available Foods</NavLink></li>
+
+            <li><NavLink to="/login" className={getLinkClass}>Login</NavLink></li>
+
+            {/* {!user && <li><NavLink to="/login" className={getLinkClass}>Login</NavLink></li>}
+            {user && <li><button onClick={handleLogout} className="text-red-500 font-semibold">Logout</button></li>} */}
+          </ul>
+        </div>
+      </div>
+
+      {/* Right */}
       <div className="navbar-end">
         {user ? (
           <div className="dropdown dropdown-end">
@@ -49,9 +71,9 @@ const Navbar = () => {
               </svg>
             </label>
             <ul tabIndex={0} className="menu dropdown-content bg-base-100 rounded-box w-40 shadow mt-3">
-              <li><button>Profile</button></li>
-              <li><button>Settings</button></li>
-              <li><button>Other</button></li>
+              <li><NavLink to={"/addFood"}>Add Food</NavLink></li>
+              <li><NavLink to={"/manageFood"}>Manage My Foods</NavLink></li>
+              <li><NavLink to={"/myFood"}>My Food Requests</NavLink></li>
               <li><button onClick={handleLogout} className="text-red-500 font-semibold">Logout</button></li>
             </ul>
           </div>
@@ -64,5 +86,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
 

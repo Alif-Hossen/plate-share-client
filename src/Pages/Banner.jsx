@@ -1,10 +1,16 @@
 import React from 'react';
+import Hero from './Hero';
+import FeaturedFoods from './FeaturedFoods';
+
 
 const Banner = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+            <div>
+                <Hero></Hero>
+                <FeaturedFoods></FeaturedFoods>
+            </div>
+        </>
     );
 };
 
