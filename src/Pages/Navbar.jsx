@@ -1,3 +1,4 @@
+
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import foodShareImg from '../assets/foodsahre.jpg';
@@ -13,11 +14,10 @@ const Navbar = () => {
             .catch(error => console.error(error));
   };
 
-  const links = <>
-    <li><NavLink to="/">Home</NavLink></li>
-    <li><NavLink to="/availableFoods">Available Foods</NavLink></li>
-    {!user && <li><NavLink to="/login">Login</NavLink></li>}
-  </>;
+  const getLinkClass = ({ isActive }) => 
+    isActive 
+      ? "text-blue-600 underline px-3 py-2 rounded"
+      : "text-gray-700 hover:text-blue-600 px-3 py-2 rounded";
 
   return (
     <div className="navbar bg-base-100 shadow-sm max-w-[1480px] mx-auto">
@@ -29,7 +29,11 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
+        <ul className="menu menu-horizontal px-1 flex gap-2">
+          <li><NavLink to="/" className={getLinkClass}>Home</NavLink></li>
+          <li><NavLink to="/availableFoods" className={getLinkClass}>Available Foods</NavLink></li>
+          {!user && <li><NavLink to="/login" className={getLinkClass}>Login</NavLink></li>}
+        </ul>
       </div>
 
       <div className="navbar-end">
@@ -60,6 +64,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
 
 
