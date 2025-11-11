@@ -5,7 +5,7 @@ import ErrorPage from "../Pages/ErrorPage";
 import Banner from "../Pages/Banner";
 import Register from "../Pages/Register";
 import Login from "../Pages/Login";
-// import { createBrowserRouter } from "react-router";
+import AvailableFoods from "../Pages/AvailableFoods";
 const router = createBrowserRouter ( [
     {
         path: "/",
@@ -24,6 +24,10 @@ const router = createBrowserRouter ( [
             {
                 path: '/login',
                 element: <Login></Login>
+            },
+            {
+                path:'/availableFoods',
+                element: <AvailableFoods></AvailableFoods>
             }
             
         ]
