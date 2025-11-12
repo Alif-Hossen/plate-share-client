@@ -6,8 +6,17 @@ const Hero = () => {
             <div>
                 <div className='mx-2 '>
                     <h1 className='md:text-5xl text-3xl pt-8 font-semibold text-center'>
-                        Food <span className='text-purple-500 font-bold'>Donation</span> and <span className='text-purple-500 font-bold'>Distribution</span>  System
+                        Food <span className='font-bold 
+                      bg-clip-text text-transparent 
+                      bg-gradient-to-r from-blue-500 to-purple-600'>
+                            Donation
+                        </span> and <span className='font-bold 
+                      bg-clip-text text-transparent 
+                      bg-gradient-to-r from-blue-500 to-purple-600'>
+                            Donation
+                        </span> System
                     </h1>
+
                 </div>
                 <div className='max-w-[500px] mx-auto'>
                     <p className='text-gray-600 text-center px-4 py-8'>

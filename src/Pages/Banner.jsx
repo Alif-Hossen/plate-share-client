@@ -1,17 +1,21 @@
-import React from 'react';
-import Hero from './Hero';
 import FeaturedFoods from './FeaturedFoods';
+import Hero from './Hero';
+import Slider from './Slider';
 
+const topProductsPromise = fetch('http://localhost:3000/top_products').then(res => res.json());
 
-const Banner = () => {
+const Banner = () => {    
     return (
         <>
             <div>
+                <Slider></Slider>
                 <Hero></Hero>
-                <FeaturedFoods></FeaturedFoods>
+                <FeaturedFoods topProductsPromise={topProductsPromise}></FeaturedFoods>
             </div>
         </>
     );
 };
 
 export default Banner;
+
+

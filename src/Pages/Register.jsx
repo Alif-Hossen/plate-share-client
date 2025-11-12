@@ -5,7 +5,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 const Register = () => {
   const { createUser } = useContext(AuthContext);
   const navigate = useNavigate();
-
+  
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -18,6 +18,26 @@ const Register = () => {
       .then((updatedUser) => {
         console.log("Registered user with photo:", updatedUser);
         navigate("/", { replace: true });
+
+        // SHARE DATA -->
+        const newUser = {
+          name: updatedUser.user.displayName,
+          email: updatedUser.user.email,
+          image: updatedUser.user.photoURL,
+        }
+
+        // CREATE USER IN THE DATABASE -->
+        fetch('http://localhost:3000/users', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(newUser)
+        })
+          .then(res => res.json()).then(data => {
+          console.log('Data After User Save', data);
+        })
+
       })
       .catch((error) => {
         console.error(error.message);

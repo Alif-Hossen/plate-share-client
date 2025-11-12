@@ -1,12 +1,16 @@
 import React from 'react';
-import collectFoodImg from '../assets/col.jpg'
+// import collectFoodImg from '../assets/col.jpg'
 
 const Static = () => {
     return (
         <div>
             <section className="py-16 bg-gray-50">
                 <div className="max-w-6xl mx-auto px-6 text-center">
-                    <h2 className="text-3xl md:text-5xl font-semibold mb-8">How <span className='font-bold text-purple-500'>Plate Share</span> Works</h2>
+                    <h2 className="text-3xl md:text-5xl font-semibold mb-8">How <span className='font-bold 
+                      bg-clip-text text-transparent 
+                      bg-gradient-to-r from-blue-500 to-purple-600'>
+                        Donation
+                    </span> Works</h2>
                     <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
                         A simple way to reduce food waste and help the community.
                     </p>

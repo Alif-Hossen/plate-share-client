@@ -15,17 +15,32 @@ const AuthProvider = ({ children }) => {
     // set loading(true)
     return signInWithPopup (auth, googleProvider);
   }
+
   const createUser = (email, password, name, photoURL) => {
-    setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-        return updateProfile(result.user, { displayName: name, photoURL })
-          .then(() => {
-            return { ...result.user, displayName: name, photoURL };
-          });
-      })
-      .finally(() => setLoading(false));
-  };
+  setLoading(true);
+  return createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      return updateProfile(user, { displayName: name, photoURL })
+        .then(() => {
+          return userCredential;
+        });
+    })
+    .finally(() => setLoading(false));
+};
+
+
+  // const createUser = (email, password, name, photoURL) => {
+  //   setLoading(true);
+  //   return createUserWithEmailAndPassword(auth, email, password)
+  //     .then((result) => {
+  //       return updateProfile(result.user, { displayName: name, photoURL })
+  //         .then(() => {
+  //           return { ...result.user, displayName: name, photoURL };
+  //         });
+  //     })
+  //     .finally(() => setLoading(false));
+  // };
 
   const login = (email, password) => {
     setLoading(true);
@@ -38,7 +53,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
+      // setLoading(false);
     });
     return unsubscribe;
   }, [auth]);

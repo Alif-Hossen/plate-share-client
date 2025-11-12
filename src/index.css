@@ -30,4 +30,24 @@
 }
 
 
+/* THEME TOGGLE */
+
+body.dark {
+  background-color: #121212;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+body {
+  transition: all 0.3s ease;
+}
+
+
+
+/* CARD STYLE --> */
+
+
+
+
+
 
