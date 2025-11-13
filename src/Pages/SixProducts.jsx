@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { NavLink } from 'react-router';
 
 const SixProducts = ({ product }) => {
     const { food_name, food_image, quantity, pickup_location, expire_date } = product;
@@ -40,15 +41,15 @@ const SixProducts = ({ product }) => {
                     </p>
 
 
-                    <button
-                        className="w-full text-white font-semibold py-2 rounded-lg transition-all duration-300 transform translate-y-0 group-hover:-translate-y-1 mt-auto 
+                    <NavLink to={"/availableFoods/"}
+                        className="w-full text-white text-center font-semibold py-2 rounded-lg transition-all duration-300 transform translate-y-0 group-hover:-translate-y-1 mt-auto 
                     
                     bg-gradient-to-r from-blue-500 to-purple-600 
                     hover:from-blue-600 hover:to-purple-700 
                     shadow-md hover:shadow-lg"
                     >
                         View Details
-                    </button>
+                    </NavLink>
                 </div>
 
             </div>

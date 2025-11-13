@@ -3,7 +3,10 @@ import React from 'react';
 const MyFood = () => {
     return (
         <div>
-            This Is MyFood Section
+            Onek Try korechi Brother.! <br />
+            but ar partechilam na. 
+            (mid exam er jonno emon aktu somosshay porte hoiche..!) <br />
+            sorry from my side =.=
         </div>
     );
 };

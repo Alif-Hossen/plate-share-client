@@ -12,6 +12,7 @@ import MyFood from "../Pages/MyFood";
 import PrivateRoute from "../Provider/PrivateRoute";
 import { Loader } from "lucide-react";
 import CardDetails from "../Pages/CardDetails";
+import UpdateFood from "../Pages/UpdateFood";
 const router = createBrowserRouter([
     {
 
@@ -52,16 +53,21 @@ const router = createBrowserRouter([
                 path: '/cardDetails/:id',
                 element: (
                     <PrivateRoute>
-                         <CardDetails></CardDetails>
+                        <CardDetails></CardDetails>
                     </PrivateRoute>
                 ),
                 loader: () => fetch('http://localhost:3000/products')
             },
             {
-                path: "*/",
-                errorElement: <ErrorPage></ErrorPage>
+                path: "*",
+                element: <ErrorPage></ErrorPage>
+            },
+            {
+                path: "/update-food/:id",
+                element: <UpdateFood></UpdateFood>
             }
-            
+
+
         ]
     }
 ])

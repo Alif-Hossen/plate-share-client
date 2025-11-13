@@ -1,5 +1,4 @@
 import React from 'react';
-// import collectFoodImg from '../assets/col.jpg'
 
 const Static = () => {
     return (
