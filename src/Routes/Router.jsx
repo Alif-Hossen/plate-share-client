@@ -10,10 +10,11 @@ import AddFood from "../Pages/AddFood";
 import ManageFood from "../Pages/ManageFood";
 import MyFood from "../Pages/MyFood";
 import PrivateRoute from "../Provider/PrivateRoute";
-import FeaturedFoods from "../Pages/FeaturedFoods";
-const router = createBrowserRouter ( [
+import { Loader } from "lucide-react";
+import CardDetails from "../Pages/CardDetails";
+const router = createBrowserRouter([
     {
-        
+
         path: "/",
         element: <Root></Root>,
         errorElement: <ErrorPage></ErrorPage>,
@@ -32,16 +33,13 @@ const router = createBrowserRouter ( [
                 element: <Login></Login>
             },
             {
-                path:'/availableFoods',
+                path: '/availableFoods/',
                 element: <AvailableFoods></AvailableFoods>
             },
             {
-                path:'/addFood',
-                element: (
-                    <PrivateRoute>
-                        <AddFood></AddFood>
-                    </PrivateRoute>
-                )
+                path: '/addFood',
+                element: <AddFood></AddFood>
+
             },
             {
                 path: '/manageFood',
@@ -51,7 +49,16 @@ const router = createBrowserRouter ( [
                 path: '/myFood',
                 element: <MyFood></MyFood>
             },
+            // {
+            //     path: '/cardDetails',
+            //     element: <CardDetails></CardDetails>
+            // },
             
+            {
+                path: '/cardDetails/:id',
+                element: <CardDetails></CardDetails>,
+                loader: () => fetch('http://localhost:3000/products')
+            },
             
         ]
     }

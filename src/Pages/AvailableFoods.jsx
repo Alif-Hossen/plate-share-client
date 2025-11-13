@@ -6,8 +6,7 @@ const availableProductsPromise = fetch('http://localhost:3000/products').then( r
 const AvailableFoods = () => {
     return (
         <div>
-            THIS IS AVAILABLE FOOD PAGE
-                <AvailableFood availableProductsPromise={availableProductsPromise}>
+            <AvailableFood availableProductsPromise=    {availableProductsPromise}>
             </AvailableFood>
         </div>
     );
