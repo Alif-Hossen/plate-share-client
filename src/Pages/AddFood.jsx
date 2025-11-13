@@ -9,6 +9,8 @@ const AddFood = () => {
     const { user } = useContext(AuthContext);
     const [expireDate, setExpireDate] = useState(null);
 
+    const API_URL = "https://plate-share-server.onrender.com";
+
     const handleAddFood = async (e) => {
         e.preventDefault();
         const form = e.target;
@@ -36,7 +38,7 @@ const AddFood = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:3000/api/v1/foods', {
+            const response = await fetch(`${API_URL}/api/v1/foods`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newFood),

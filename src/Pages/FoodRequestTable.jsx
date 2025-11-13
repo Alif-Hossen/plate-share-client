@@ -8,10 +8,12 @@ const FoodRequestTable = ({ foodId, foodStatus }) => {
     const [requests, setRequests] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const API_URL = "https://plate-share-server.onrender.com";
+
     const fetchRequests = async () => {
         setLoading(true);
         try {
-            const res = await fetch(`http://localhost:3000/api/v1/requests/${foodId}`);
+            const res = await fetch(`${API_URL}/api/v1/requests/${foodId}`);
             const data = await res.json();
             if (res.ok) {
                 const sortedRequests = data.sort((a, b) => {
@@ -41,7 +43,7 @@ const FoodRequestTable = ({ foodId, foodStatus }) => {
         }
 
         try {
-            const res = await fetch(`http://localhost:3000/api/v1/requests/${requestId}`, {
+            const res = await fetch(`${API_URL}/api/v1/requests/${requestId}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: newStatus, foodId: foodId }), 

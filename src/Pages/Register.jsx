@@ -5,6 +5,8 @@ import { AuthContext } from '../Provider/AuthProvider';
 const Register = () => {
   const { createUser } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const API_URL = "https://plate-share-server.onrender.com";
   
   const handleRegister = (e) => {
     e.preventDefault();
@@ -27,7 +29,7 @@ const Register = () => {
         }
 
         // CREATE USER IN THE DATABASE -->
-        fetch('http://localhost:3000/users', {
+        fetch(`${API_URL}/users`, {
           method: 'POST',
           headers: {
             'content-type': 'application/json'

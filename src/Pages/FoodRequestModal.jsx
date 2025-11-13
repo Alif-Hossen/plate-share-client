@@ -14,6 +14,8 @@ const FoodRequestModal = ({ isOpen, onClose, food, requester }) => {
         const whyNeedFood = form.whyNeedFood.value;
         const contactNo = form.contactNo.value;
 
+        const API_URL = "https://plate-share-server.onrender.com";
+
         if (!requester?.email) {
             toast.error("You must be logged in to request food.");
             return;
@@ -36,7 +38,7 @@ const FoodRequestModal = ({ isOpen, onClose, food, requester }) => {
         };
 
         try {
-            const response = await fetch('http://localhost:3000/api/v1/requests', {
+            const response = await fetch(`${API_URL}/api/v1/requests`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(requestData),
@@ -47,7 +49,7 @@ const FoodRequestModal = ({ isOpen, onClose, food, requester }) => {
             if (response.ok && data.success) {
                 toast.success('✅ Food Request Submitted Successfully!');
                 form.reset();
-                onClose(); 
+                onClose();
             } else {
                 toast.error(` Failed: ${data.message || 'Could not submit request.'}`);
             }
@@ -73,20 +75,20 @@ const FoodRequestModal = ({ isOpen, onClose, food, requester }) => {
 
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700 mb-1">Your Location (Write Location)</label>
-                        <input type="text" name="writeLocation" required 
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" />
+                        <input type="text" name="writeLocation" required
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" />
                     </div>
 
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700 mb-1">Why Need Food (Reason)</label>
                         <textarea name="whyNeedFood" rows="3" required
-                                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"></textarea>
                     </div>
 
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700 mb-1">Contact No.</label>
-                        <input type="tel" name="contactNo" placeholder="e.g., +8801XXXXXXXXX" required 
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" />
+                        <input type="tel" name="contactNo" placeholder="e.g., +8801XXXXXXXXX" required
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" />
                     </div>
 
                     <button type="submit" className="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg hover:bg-indigo-700 transition duration-300 mt-4">

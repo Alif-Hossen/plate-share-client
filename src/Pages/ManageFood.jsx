@@ -11,10 +11,12 @@ const ManageFood = () => {
     const [foods, setFoods] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const API_URL = "https://plate-share-server.onrender.com";
+
     const fetchFoods = async () => {
         setLoading(true);
         try {
-            const res = await fetch(`http://localhost:3000/api/v1/my-foods?email=${user?.email}`);
+            const res = await fetch(`${API_URL}/api/v1/my-foods?email=${user?.email}`);
             const data = await res.json();
             if (res.ok) {
                 setFoods(data);
@@ -46,7 +48,7 @@ const ManageFood = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const res = await fetch(`http://localhost:3000/api/v1/foods/${id}`, {
+                    const res = await fetch(`h${API_URL}/api/v1/foods/${id}`, {
                         method: 'DELETE'
                     });
                     const data = await res.json();

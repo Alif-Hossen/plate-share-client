@@ -3,12 +3,15 @@ import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const UpdateFood = () => {
+
+    const API_URL = "https://plate-share-server.onrender.com";
+
     const { id } = useParams();
     const navigate = useNavigate();
     const [food, setFood] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/v1/foods/${id}`)
+        fetch(`${API_URL}/api/v1/foods/${id}`)
             .then((res) => {
                 if (!res.ok) throw new Error("Food not found");
                 return res.json();
@@ -39,7 +42,7 @@ const UpdateFood = () => {
         };
 
         try {
-            const res = await fetch(`http://localhost:3000/api/v1/foods/${id}`, {
+            const res = await fetch(`${API_URL}/api/v1/foods/${id}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(updatedFood),
