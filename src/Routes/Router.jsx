@@ -49,14 +49,13 @@ const router = createBrowserRouter([
                 path: '/myFood',
                 element: <MyFood></MyFood>
             },
-            // {
-            //     path: '/cardDetails',
-            //     element: <CardDetails></CardDetails>
-            // },
-            
             {
                 path: '/cardDetails/:id',
-                element: <CardDetails></CardDetails>,
+                element: (
+                    <PrivateRoute>
+                         <CardDetails></CardDetails>
+                    </PrivateRoute>
+                ),
                 loader: () => fetch('http://localhost:3000/products')
             },
             
