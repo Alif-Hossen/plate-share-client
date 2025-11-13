@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { app } from '../Firebase/firebase.config';
+import Loading from '../Pages/Loading';
 
 const googleProvider = new GoogleAuthProvider()
 
@@ -12,7 +13,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const signInWithGoogle = () => {
-    // set loading(true)
+    setLoading(true)
     return signInWithPopup (auth, googleProvider);
   }
 
@@ -30,18 +31,6 @@ const AuthProvider = ({ children }) => {
 };
 
 
-  // const createUser = (email, password, name, photoURL) => {
-  //   setLoading(true);
-  //   return createUserWithEmailAndPassword(auth, email, password)
-  //     .then((result) => {
-  //       return updateProfile(result.user, { displayName: name, photoURL })
-  //         .then(() => {
-  //           return { ...result.user, displayName: name, photoURL };
-  //         });
-  //     })
-  //     .finally(() => setLoading(false));
-  // };
-
   const login = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password)
@@ -53,7 +42,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      // setLoading(false);
+      setLoading(false);
     });
     return unsubscribe;
   }, [auth]);
@@ -64,9 +53,16 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
     createUser,
     login,
-    logOut 
+    logOut,
+    setLoading,
 };
-  return <AuthContext.Provider value={authData}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={authData}>
+      {loading? (<Loading></Loading> ):
+        children
+      }
+      </AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

@@ -17,7 +17,6 @@ const router = createBrowserRouter([
 
         path: "/",
         element: <Root></Root>,
-        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 index: true,
@@ -58,6 +57,10 @@ const router = createBrowserRouter([
                 ),
                 loader: () => fetch('http://localhost:3000/products')
             },
+            {
+                path: "*/",
+                errorElement: <ErrorPage></ErrorPage>
+            }
             
         ]
     }
