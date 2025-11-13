@@ -56,7 +56,7 @@ const router = createBrowserRouter([
                         <CardDetails></CardDetails>
                     </PrivateRoute>
                 ),
-                loader: () => fetch('http://localhost:3000/products')
+                loader: () => fetch('https://plate-share-server.onrender.com/products')
             },
             {
                 path: "*",
